@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         rightTextField.keyboardType = .numberPad
     }
 
-    func showAlert(message: String) {
+    private func showAlert(message: String) {
         let alert = UIAlertController(title: "課題5",
                                       message: message,
                                       preferredStyle: .alert
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func calculateButton(_ sender: Any) {
+    @IBAction private func calculateButton(_ sender: Any) {
         guard let leftCount = Double(leftTextField.text!) else {
             showAlert(message: "割られる数を入力してください")
             return
@@ -45,8 +45,11 @@ class ViewController: UIViewController {
             return
         }
         let totalNum = leftCount / rightCount
+        
         // 小数点以下5桁まで表示
-        totalLabel.text = String(floor(totalNum * 100000) / 100000)
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 5
+        totalLabel.text = formatter.string(from: NSNumber(value: totalNum))
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
