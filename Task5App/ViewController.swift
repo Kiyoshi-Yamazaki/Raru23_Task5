@@ -45,6 +45,7 @@ class ViewController: UIViewController {
             return
         }
         let totalNum = leftCount / rightCount
+        
         // 小数点以下5桁まで表示
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 5
